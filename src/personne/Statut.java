@@ -15,9 +15,9 @@ public enum Statut {
 		this.value = value;
 	}
 	
-	public Statut getInstance(int value){
-		return new Statut(value);
-	}
+//	public Statut getInstance(int value){
+////		return new Statut(value);
+//	}
 
 	public boolean equals(Statut s) {
 		return this.value == s.value;

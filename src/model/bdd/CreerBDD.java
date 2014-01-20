@@ -58,7 +58,7 @@ public class CreerBDD {
 	public static void addMateriel(LinkedList<String> materiel){
 		boolean nameGiven=false;
 		for(String s : materiel){
-			MaterielStock m = new MaterielStock(materiel.get(0),materiel.get(Statut((int)materiel.size()-1)));
+//			MaterielStock m = new MaterielStock(materiel.get(0),materiel.get(Statut((int)materiel.size()-1)));
 			if(s.equals("-1")){
 				return;
 			}
