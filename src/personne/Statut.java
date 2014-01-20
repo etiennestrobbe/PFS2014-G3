@@ -15,9 +15,14 @@ public enum Statut {
 		this.value = value;
 	}
 	
-//	public Statut getInstance(int value){
-////		return new Statut(value);
-//	}
+	public static Statut getInstance(int value){
+		switch(value){
+		case 0:return Statut.Etudiant;
+		case 1:return Statut.Professeur;
+		case 2:return Statut.Chercheur;
+		default:return Statut.Etudiant;
+		}
+	}
 
 	public boolean equals(Statut s) {
 		return this.value == s.value;
