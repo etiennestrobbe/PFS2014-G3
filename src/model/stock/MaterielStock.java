@@ -96,6 +96,9 @@ public class MaterielStock {
 		return true;
 	}
 
+	public int getDisponible(){
+		return this.disponibilite;
+	}
 	/**
 	 * Methode permettant de recuperer la liste des periodes inclues entre les
 	 * dates donnees ou contenant une de ces dates

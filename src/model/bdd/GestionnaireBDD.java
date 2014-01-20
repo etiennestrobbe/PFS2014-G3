@@ -228,7 +228,6 @@ public class GestionnaireBDD {
 	
 	private void majStatistique(){}
 
-	/*
 	// TMP pour tests
 	public static void main(String args[]) {
 
@@ -270,5 +269,5 @@ public class GestionnaireBDD {
 			System.out.println(a);
 		}
 
-	}*/
+	}
 }

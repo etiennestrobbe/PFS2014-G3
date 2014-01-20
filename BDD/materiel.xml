@@ -37,7 +37,7 @@
       <string>IOS</string>
       <string>Ecran13</string>
     </proprietes>
-    <disponibilite>4</disponibilite>
+    <disponibilite>8</disponibilite>
   </model.stock.MaterielStock>
   <model.stock.MaterielStock>
     <statutNecessaire>Etudiant</statutNecessaire>
@@ -56,7 +56,7 @@
     <proprietes>
       <string>Android</string>
     </proprietes>
-    <disponibilite>4</disponibilite>
+    <disponibilite>5</disponibilite>
   </model.stock.MaterielStock>
   <model.stock.MaterielStock>
     <statutNecessaire>Etudiant</statutNecessaire>
@@ -77,6 +77,6 @@
       <string>Ecran17</string>
       <string>4core</string>
     </proprietes>
-    <disponibilite>4</disponibilite>
+    <disponibilite>6</disponibilite>
   </model.stock.MaterielStock>
 </linked-list>

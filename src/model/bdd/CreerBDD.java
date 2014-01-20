@@ -14,34 +14,37 @@ public class CreerBDD {
 	public static void setBDD(String chemin) {
 
 		ConfigXML.definirDossier(chemin);
-		setMateriel(chemin);
-		setComptes(chemin);
-		setEmprunts(chemin);
+		setMateriel();
+		setComptes();
+		setEmprunts();
 	}
 
-	private static void setEmprunts(String chemin) {
+	private static void setEmprunts() {
 		HashMap<Personne, LinkedList<String>> emprunts = new HashMap<Personne, LinkedList<String>>();
 		ConfigXML.store(emprunts, "emprunts");
 	}
 
-	private static void setComptes(String chemin) {
+	private static void setComptes() {
 		LinkedList<Personne> comptes = new LinkedList<Personne>();
 		ConfigXML.store(comptes, "comptes");
 	}
 
-	private static void setMateriel(String chemin) {
+	/**
+	 * Fonction qui cree le stock a partir du fichier XML listeMateriel.xml qui est la base du stock
+	 */
+	private static void setMateriel() {
 
 		LinkedList<String> ret = (LinkedList<String>) ConfigXML.load("listeMateriel");
 
 		LinkedList<MaterielStock> stock = new LinkedList<MaterielStock>();
 		String nameAndProps[];
 		MaterielStock m;
-		int i = 1;
+		int i = 2;
 
 		for (String s : ret) {
 			nameAndProps = s.split("-");
 
-			m = new MaterielStock(nameAndProps[0], 4, Statut.Etudiant);
+			m = new MaterielStock(nameAndProps[1], Integer.parseInt(nameAndProps[0]), Statut.Etudiant);
 
 			while (i < nameAndProps.length) {
 				System.out.println("Prop : " + nameAndProps[i]);
@@ -49,28 +52,58 @@ public class CreerBDD {
 				i++;
 			}
 			stock.add(m);
-			i = 1;
+			i = 2;
 		}
 
 		ConfigXML.store(stock, "materiel");
 	}
 	
-	public static void addMateriel(LinkedList<String> materiel){
-		boolean nameGiven=false;
-		for(String s : materiel){
-			MaterielStock m = new MaterielStock(materiel.get(0),4,Statut.getInstance(Integer.parseInt(materiel.get(materiel.size()-1))));
-			if(s.equals("-1")){
-				return;
+	/**
+	 * Fonction qui permet d'ajouter un nouveau materiel avec des proprietes definies dans le stock.
+	 * Si le materiel existe deja, sa quantite est augmente
+	 * @param quantite la quantite de materiel a ajouter
+	 * @param listeNameAndProp le nom et la liste des propriete du materiel, se termine par -1
+	 * @param stock le stock dans lequel on ajoute le materiel
+	 */
+	public static void addMateriel(int quantite , LinkedList<String> listeNameAndProp , LinkedList<MaterielStock> stock){
+		MaterielStock m = new MaterielStock(listeNameAndProp.get(0),quantite,Statut.getInstance(Integer.parseInt(listeNameAndProp.get(listeNameAndProp.size()-1))));
+		for(int i=1;i<listeNameAndProp.size();i++){
+			if(listeNameAndProp.get(i).equals("-1")){
+				break;
 			}
-			if(!nameGiven){
-				
-			}
-			
+			m.addPropriete(listeNameAndProp.get(i));
 		}
+		for(MaterielStock ms : stock){
+			if(m.equals(ms)){
+				// TODO incrementer la quantite
+			}
+		}
+		ConfigXML.store(stock, "materiel");
+		
+		
 	}
 	
-	public static void removeMateriel(){
-		// TODO
+	/**
+	 * Fonction permettant de supprimer un materiel du stock
+	 * @param stock le stock dans lequel on travail
+	 * @param materiel le materiel a supprimer
+	 * @param quantite la quantite du materiel a supprimer
+	 */
+	public static void removeMateriel(LinkedList<MaterielStock> stock , MaterielStock materiel ,int quantite){
+		for(MaterielStock ms : stock){
+			if(ms.equals(materiel)){
+				// si la quantite a enlever est plus grande ou egale que la quantite disponible, alors on supprime completement le materiel
+				if(ms.getDisponible()<= quantite){
+					stock.remove(ms);
+					break;
+				}
+				else{
+					// TODO decrementer la quantite (gerer avec les reparations ...)
+					break;
+				}
+			}
+		}
+		ConfigXML.store(stock, "materiel");
 	}
 
 }
