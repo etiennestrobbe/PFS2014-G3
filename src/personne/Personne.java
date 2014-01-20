@@ -42,7 +42,7 @@ public class Personne {
 		return statut;
 	}
 
-	public int getEmprunt(){
+	public int getNbEmprunt(){
 		return nbEmprunt;
 	}
 

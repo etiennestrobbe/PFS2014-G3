@@ -29,6 +29,10 @@ public class Emprunt {
 		this.materielEmprunte = materielEmprunte;
 	}
 
+	/**
+	 * Methode permettant de savoir si un emprunt est autorise (valide) ou pas.
+	 * @return true si l'emprunt est valide, false sinon
+	 */
 	public boolean valide() {
 
 		if (!personne.getStatut().suffisant(

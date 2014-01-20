@@ -3,15 +3,18 @@
     <prenom>Nom1</prenom>
     <nom>Prenom</nom>
     <statut>Professeur</statut>
+    <nbEmprunt>0</nbEmprunt>
   </personne.Personne>
   <personne.Personne>
     <prenom>Nom2</prenom>
     <nom>Prenom</nom>
     <statut>Professeur</statut>
+    <nbEmprunt>0</nbEmprunt>
   </personne.Personne>
   <personne.Personne>
     <prenom>Nom3</prenom>
     <nom>Prenom</nom>
     <statut>Professeur</statut>
+    <nbEmprunt>0</nbEmprunt>
   </personne.Personne>
 </linked-list>

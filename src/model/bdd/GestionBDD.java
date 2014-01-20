@@ -9,7 +9,7 @@ import model.stock.MaterielStock;
 import personne.Personne;
 import personne.Statut;
 
-public class CreerBDD {
+public class GestionBDD {
 
 	public static void setBDD(String chemin) {
 
@@ -76,7 +76,7 @@ public class CreerBDD {
 		}
 		for(MaterielStock ms : stock){
 			if(m.estLeMemeMaterielQue(ms)){
-				// TODO incrementer la quantite
+				ms.ajouterMateriel(quantite);
 				alreadyExisting = true;
 				break;
 			}

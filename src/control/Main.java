@@ -16,7 +16,7 @@ import personne.*;
 
 public class Main {
 
-	private static GestionnaireBDD bdd = new GestionnaireBDD("./BDD/");
+	private static GestionnaireStock bdd = new GestionnaireStock("./BDD/");
 	private static Scanner scan;
 	private static String commande;
 	private static Personne personne;

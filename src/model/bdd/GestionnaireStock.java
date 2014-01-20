@@ -14,27 +14,25 @@ import personne.Personne;
 import personne.Statut;
 
 // TODO : gestion des exceptions
-public class GestionnaireBDD {
+public class GestionnaireStock {
 
 	private static LinkedList<MaterielStock> stocks;
 	private LinkedList<Personne> comptes;
 	private HashMap<Personne, LinkedList<Emprunt>> emprunts;
 
-	public GestionnaireBDD(String chemin) {
+	public GestionnaireStock(String chemin) {
 		ConfigXML.definirDossier(chemin);
 		loadAll();
 	}
 
 	private void loadAll() {
 		stocks = (LinkedList<MaterielStock>) ConfigXML.load("materiel");
-		// TODO load comptes
 		Object cmpt = ConfigXML.load("comptes");
 		if (cmpt instanceof LinkedList) {
 			comptes = (LinkedList<Personne>) cmpt;
 		} else {
 			comptes = new LinkedList<Personne>();
 		}
-		// TODO load emprunts (correctly)
 		Object emp = ConfigXML.load("emprunts");
 		if (emp instanceof HashMap) {
 			emprunts = (HashMap<Personne, LinkedList<Emprunt>>) emp;
@@ -240,8 +238,8 @@ public class GestionnaireBDD {
 		Calendar c4 = Calendar.getInstance();
 		c4.set(2013, 11, 25);
 		String chemin = "./BDD/";
-		CreerBDD.setBDD(chemin);
-		GestionnaireBDD gbdd = new GestionnaireBDD(chemin);
+		GestionBDD.setBDD(chemin);
+		GestionnaireStock gbdd = new GestionnaireStock(chemin);
 		MaterielStock ms = gbdd.stocks.get(0);
 		MaterielStock ms2 = gbdd.stocks.get(1);
 		Personne p1 = new Personne("Nom1", "Prenom", Statut.Professeur);
@@ -271,8 +269,8 @@ public class GestionnaireBDD {
 		lkl.add("beurre");
 		lkl.add("confiture");
 		lkl.add("-1");
-		CreerBDD.addMateriel(125, lkl, stocks);
-		CreerBDD.addMateriel(125, lkl, stocks);
+		GestionBDD.addMateriel(125, lkl, stocks);
+		GestionBDD.addMateriel(125, lkl, stocks);
 
 		for (MaterielStock a : gbdd.stocks) {
 			System.out.println(a);

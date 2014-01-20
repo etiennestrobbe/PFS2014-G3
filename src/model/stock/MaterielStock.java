@@ -327,11 +327,11 @@ public class MaterielStock {
 		return this.getStatutNecessaire()==m.getStatutNecessaire() && this.name.equals(m.name) && this.proprietes.equals(m.proprietes);
 	}
 
-	public int getPanne(){
+	public int getNbPanne(){
 		return nbFoisPanne;
 	}
 
-	public int getEmprunt(){
+	public int getNbEmprunt(){
 		return nbFoisEmp;
 	}
 
@@ -346,19 +346,19 @@ public class MaterielStock {
 	
 	/**
 	 * Fonction permettant de supprimer un matériel
-	 * @return void
+	 * @param quantite la quantite a supprimer
 	 */
-	public void supprimerMateriel () {
-		if(disponibilite == 0)
-			disponibilite--;
+	public void supprimerMateriel (int quantite) {
+		if(disponibilite >= quantite)
+			disponibilite-=quantite;
 	}
 	
 	/**
 	 * Fonction permettant d'ajouter un matériel
-	 * @return void
+	 * @param quantite la quantite a ajouter
 	 */
-	public void ajouterMateriel () {
-		disponibilite++;
+	public void ajouterMateriel (int quantite) {
+		disponibilite+=quantite;
 	}
 	
 	/**

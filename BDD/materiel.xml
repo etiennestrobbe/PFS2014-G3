@@ -18,6 +18,9 @@
       <string>Ecran15</string>
     </proprietes>
     <disponibilite>4</disponibilite>
+    <panne>0</panne>
+    <nbFoisEmp>0</nbFoisEmp>
+    <nbFoisPanne>0</nbFoisPanne>
   </model.stock.MaterielStock>
   <model.stock.MaterielStock>
     <statutNecessaire>Etudiant</statutNecessaire>
@@ -38,6 +41,9 @@
       <string>Ecran13</string>
     </proprietes>
     <disponibilite>8</disponibilite>
+    <panne>0</panne>
+    <nbFoisEmp>0</nbFoisEmp>
+    <nbFoisPanne>0</nbFoisPanne>
   </model.stock.MaterielStock>
   <model.stock.MaterielStock>
     <statutNecessaire>Etudiant</statutNecessaire>
@@ -57,6 +63,9 @@
       <string>Android</string>
     </proprietes>
     <disponibilite>5</disponibilite>
+    <panne>0</panne>
+    <nbFoisEmp>0</nbFoisEmp>
+    <nbFoisPanne>0</nbFoisPanne>
   </model.stock.MaterielStock>
   <model.stock.MaterielStock>
     <statutNecessaire>Etudiant</statutNecessaire>
@@ -78,6 +87,9 @@
       <string>4core</string>
     </proprietes>
     <disponibilite>6</disponibilite>
+    <panne>0</panne>
+    <nbFoisEmp>0</nbFoisEmp>
+    <nbFoisPanne>0</nbFoisPanne>
   </model.stock.MaterielStock>
   <model.stock.MaterielStock>
     <statutNecessaire>Etudiant</statutNecessaire>
@@ -97,6 +109,9 @@
       <string>beurre</string>
       <string>confiture</string>
     </proprietes>
-    <disponibilite>125</disponibilite>
+    <disponibilite>250</disponibilite>
+    <panne>0</panne>
+    <nbFoisEmp>0</nbFoisEmp>
+    <nbFoisPanne>0</nbFoisPanne>
   </model.stock.MaterielStock>
 </linked-list>

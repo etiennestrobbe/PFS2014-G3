@@ -16,7 +16,7 @@ import java.util.Calendar;
 import model.temps.*;
 public class GestionnaireBDDTest {
 	
-	GestionnaireBDD bdd;
+	GestionnaireStock bdd;
 	Personne p1,p2,p3;
 	MaterielStock ms;
 	Calendar c1,c2;
@@ -27,8 +27,8 @@ public class GestionnaireBDDTest {
 	@Before
 	public void setUp(){
 		String chemin = "./BDD/";
-		CreerBDD.setBDD(chemin);
-		bdd = new GestionnaireBDD(chemin);
+		GestionBDD.setBDD(chemin);
+		bdd = new GestionnaireStock(chemin);
 		p1 = new Personne("Jean","Dupont",Statut.Chercheur);
 		p2 = new Personne("Jacques","Durant",Statut.Chercheur);
 		p3 = new Personne("Pierre","Leclercq",Statut.Chercheur);
