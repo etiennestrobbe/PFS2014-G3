@@ -9,6 +9,7 @@ public class Personne {
 	private String prenom;
 	private String nom;
 	private Statut statut;
+	private int nbEmprunt;
 
 	/** Constructeur de la classe
 	 * 
@@ -20,6 +21,7 @@ public class Personne {
 		this.prenom = prenom;
 		this.nom = nom;
 		this.setStatut(statut);
+		nbEmprunt = 0;
 	}
 
 	@Override
@@ -40,4 +42,11 @@ public class Personne {
 		return statut;
 	}
 
+	public int getEmprunt(){
+		return nbEmprunt;
+	}
+
+	public void setEmprunt(int nb){
+		nbEmprunt += nb;
+	}
 }

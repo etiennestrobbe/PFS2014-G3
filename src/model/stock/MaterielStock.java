@@ -15,6 +15,8 @@ public class MaterielStock {
 	private LinkedList<PeriodeAbsolue> quantitePeriodes;
 	private LinkedList<String> proprietes;
 	private int disponibilite;
+	private int nbFoisEmp;
+	private int nbFoisPanne;
 
 	public MaterielStock(String name, int disponibilite, Statut statut) {
 		this.statutNecessaire = statut;
@@ -23,6 +25,8 @@ public class MaterielStock {
 		quantitePeriodes = new LinkedList<PeriodeAbsolue>();
 		proprietes = new LinkedList<String>();
 		quantitePeriodes.add(new PeriodeAbsolue());
+		nbFoisEmp = 0;
+		nbFoisPanne = 0;
 	}
 
 	public void addPropriete(String propriete) {
@@ -291,5 +295,19 @@ public class MaterielStock {
 		return this.getStatutNecessaire()==m.getStatutNecessaire() && this.name.equals(m.name) && this.proprietes.equals(m.proprietes);
 	}
 
+	public int getPanne(){
+		return nbFoisPanne;
+	}
 
+	public int getEmprunt(){
+		return nbFoisEmp;
+	}
+
+	public void setNbPanne(int nb){
+		nbFoisPanne += nb;
+	}
+
+	public void setNbEmprunt(int nb){
+		nbFoisEmp += nb;
+	}
 }
