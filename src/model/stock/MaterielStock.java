@@ -9,15 +9,26 @@ import model.temps.PeriodeAbsolue;
 import personne.Statut;
 
 public class MaterielStock {
-
+	
 	private Statut statutNecessaire;
 	private String name;
 	private LinkedList<PeriodeAbsolue> quantitePeriodes;
 	private LinkedList<String> proprietes;
 	private int disponibilite;
+	private int panne;
 	private int nbFoisEmp;
 	private int nbFoisPanne;
 
+	/**
+	 * Constructeur de MaterielStock
+	 * @param name
+	 * 			String nom du matériel
+	 * @param disponibilite
+	 * 			Donne le nombre de matériel disponible
+	 * @param statut
+	 * 			Statut fiche le statut minimum pour interargir avec le materiel
+	 * @return void
+	 */
 	public MaterielStock(String name, int disponibilite, Statut statut) {
 		this.statutNecessaire = statut;
 		this.name = name;
@@ -26,18 +37,35 @@ public class MaterielStock {
 		proprietes = new LinkedList<String>();
 		quantitePeriodes.add(new PeriodeAbsolue());
 		nbFoisEmp = 0;
+		panne = 0;
 		nbFoisPanne = 0;
 	}
-
+	
+	/**
+	 * 
+	 * @param propriete 
+	 * 				String ajouter une propriété appliqué au materiel
+	 * @return void
+	 */
 	public void addPropriete(String propriete) {
 		proprietes.add(propriete);
 	}
 	
-
+	/**
+	 * 
+	 * @param statutNecessaire
+	 * 				Statut fixe le statut pour interargir avec materiel
+	 * @return void
+	 */
 	public void setStatutNecessaire(Statut statutNecessaire) {
 		this.statutNecessaire = statutNecessaire;
 	}
-
+	
+	/**
+	 * 
+	 * @return Statut 
+	 * 				Getter du Statut minimum pour interargir avec ce materiel
+	 */
 	public Statut getStatutNecessaire() {
 		return statutNecessaire;
 	}
@@ -58,7 +86,11 @@ public class MaterielStock {
 		}
 		return res;
 	}
-
+	
+	/**
+	 * Affichage des données du materiel 
+	 * @return String
+	 */
 	public String affichage() {
 
 		// Creer la chaine de caractere a retourner
@@ -310,4 +342,45 @@ public class MaterielStock {
 	public void incNbEmprunt(int nb){
 		nbFoisEmp += nb;
 	}
+	
+	
+	/**
+	 * Fonction permettant de supprimer un matériel
+	 * @return void
+	 */
+	public void supprimerMateriel () {
+		if(disponibilite == 0)
+			disponibilite--;
+	}
+	
+	/**
+	 * Fonction permettant d'ajouter un matériel
+	 * @return void
+	 */
+	public void ajouterMateriel () {
+		disponibilite++;
+	}
+	
+	/**
+	 * Fonction permettant de mettre en reparation un matériel
+	 * @return void
+	 */
+	public void reparerMateriel () {
+		if(disponibilite == 0) {
+			disponibilite--;
+			++panne;
+			++nbFoisPanne;
+		}	
+	}
+	
+	/**
+	 * Fonction permettant de remettre le matériel en fonction
+	 * @return void
+	 */
+	public void finReparerMateriel () {
+			++disponibilite;
+			--panne;
+	}	
+	
+
 }
