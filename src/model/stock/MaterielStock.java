@@ -303,11 +303,11 @@ public class MaterielStock {
 		return nbFoisEmp;
 	}
 
-	public void setNbPanne(int nb){
+	public void incNbPanne(int nb){
 		nbFoisPanne += nb;
 	}
 
-	public void setNbEmprunt(int nb){
+	public void incNbEmprunt(int nb){
 		nbFoisEmp += nb;
 	}
 }

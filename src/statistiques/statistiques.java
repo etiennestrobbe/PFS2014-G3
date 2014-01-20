@@ -1,3 +1,6 @@
 package statistiques;
 
-import 
+public class Statistiques{
+	
+	public Statistiques(){}
+}
