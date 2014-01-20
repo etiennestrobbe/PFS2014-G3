@@ -1,0 +1,17 @@
+<linked-list>
+  <personne.Personne>
+    <prenom>Nom1</prenom>
+    <nom>Prenom</nom>
+    <statut>Professeur</statut>
+  </personne.Personne>
+  <personne.Personne>
+    <prenom>Nom2</prenom>
+    <nom>Prenom</nom>
+    <statut>Professeur</statut>
+  </personne.Personne>
+  <personne.Personne>
+    <prenom>Nom3</prenom>
+    <nom>Prenom</nom>
+    <statut>Professeur</statut>
+  </personne.Personne>
+</linked-list>
