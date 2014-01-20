@@ -25,10 +25,10 @@ public class Statistiques{
 
 	public void emprunteur(){
 		int max = 0;		
-		for (int i = 0; i<stock.comptes.size(); i++){
-			if (stock.comptes.get(i).getEmprunt()>max){
-				max = stock.comptes.get(i).getEmprunt();
-				plusGrosEmp = stock.comptes.get(i)
+		for (int i = 0; i<stock.getCompte().size(); i++){
+			if (stock.getCompte().get(i).getEmprunt()>max){
+				max = stock.getCompte().get(i).getEmprunt();
+				plusGrosEmp = stock.getCompte().get(i);
 			}
 		} 
 	}
@@ -36,14 +36,14 @@ public class Statistiques{
 	public void materiel(){
 		int maxEmprunt = 0;
 		int maxPanne = 0;
-		for (int i = 0; i<stock.stocks.size(); i++){
-			if (stock.stocks.get(i).getEmprunt()>maxEmprunt){
-				maxEmprunt = stock.stocks.get(i).getEmprunt();
-				plusDeFoisEmp = stock.stocks.get(i);
+		for (int i = 0; i<stock.getStock().size(); i++){
+			if (stock.getStock().get(i).getEmprunt()>maxEmprunt){
+				maxEmprunt = stock.getStock().get(i).getEmprunt();
+				plusDeFoisEmp = stock.getStock().get(i);
 			}
-			if (stock.stocks.get(i).getPanne()>maxPanne){
-				maxPanne = stock.stocks.get(i).getPanne();
-				plusDeFoisPanne = stock.stocks.get(i);
+			if (stock.getStock().get(i).getPanne()>maxPanne){
+				maxPanne = stock.getStock().get(i).getPanne();
+				plusDeFoisPanne = stock.getStock().get(i);
 			}
 		}
 	}
@@ -91,5 +91,4 @@ public class Statistiques{
 		else texte += "Le matériel le plus souvent en panne est : "+plusDeFoisPanne+" avec "+plusDeFoisPanne.getPanne()+" panne(s)\n";
 		return texte;
 	}
->>>>>>> edec35b814fe3f9076c6dbbffc1b559eb5609f14
 }
