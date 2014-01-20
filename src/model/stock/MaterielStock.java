@@ -1,6 +1,6 @@
 package model.stock;
-/**
- * author Petillon Sebastien
+/**Classe designant un element du stock ayant un nom et des proprietes definies
+ * author Petillon Sebastien & Etienne STROBBE
  */
 import java.util.LinkedList;
 
@@ -285,6 +285,10 @@ public class MaterielStock {
 				&& this.quantitePeriodes.equals(ms.quantitePeriodes)
 				&& this.proprietes.equals(ms.proprietes)
 				&& (this.disponibilite == ms.disponibilite);
+	}
+	
+	public boolean estLeMemeMaterielQue(MaterielStock m){
+		return this.getStatutNecessaire()==m.getStatutNecessaire() && this.name.equals(m.name) && this.proprietes.equals(m.proprietes);
 	}
 
 

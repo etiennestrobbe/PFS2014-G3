@@ -1,7 +1,7 @@
 package personne;
 
 /**
- * 
+ * Enum designant le statut d'une personne
  * @author Sebastien Petillon
  *
  */
@@ -15,6 +15,11 @@ public enum Statut {
 		this.value = value;
 	}
 	
+	/**
+	 * Permet de recuperer un enum avec un parametre donne
+	 * @param value 
+	 * @return 
+	 */
 	public static Statut getInstance(int value){
 		switch(value){
 		case 0:return Statut.Etudiant;
@@ -28,6 +33,11 @@ public enum Statut {
 		return this.value == s.value;
 	}
 	
+	/**
+	 * Methode permettant de savoir si un statut est suffisant selon le statut requis 
+	 * @param s le statut requis
+	 * @return true ou false
+	 */
 	public boolean suffisant(Statut s){
 		return s.value - this.value <= 0;
 	}

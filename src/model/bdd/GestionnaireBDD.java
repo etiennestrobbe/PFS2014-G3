@@ -16,7 +16,7 @@ import personne.Statut;
 // TODO : gestion des exceptions
 public class GestionnaireBDD {
 
-	private LinkedList<MaterielStock> stocks;
+	private static LinkedList<MaterielStock> stocks;
 	private LinkedList<Personne> comptes;
 	private HashMap<Personne, LinkedList<Emprunt>> emprunts;
 
@@ -264,10 +264,20 @@ public class GestionnaireBDD {
 		gbdd.ajouterEmprunt(emp2);
 //		gbdd.supprimerCompte(p1);
 		 gbdd.annulerEmprunt(emp2);
+		 
 //		gbdd.annulerEmprunt(emp2);
+		LinkedList<String> lkl = new LinkedList<String>();
+		lkl.add("Tartine");
+		lkl.add("beurre");
+		lkl.add("confiture");
+		lkl.add("-1");
+		CreerBDD.addMateriel(125, lkl, stocks);
+		CreerBDD.addMateriel(125, lkl, stocks);
+
 		for (MaterielStock a : gbdd.stocks) {
 			System.out.println(a);
 		}
+		
 
 	}
 }

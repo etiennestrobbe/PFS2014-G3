@@ -66,6 +66,7 @@ public class CreerBDD {
 	 * @param stock le stock dans lequel on ajoute le materiel
 	 */
 	public static void addMateriel(int quantite , LinkedList<String> listeNameAndProp , LinkedList<MaterielStock> stock){
+		boolean alreadyExisting = false;
 		MaterielStock m = new MaterielStock(listeNameAndProp.get(0),quantite,Statut.getInstance(Integer.parseInt(listeNameAndProp.get(listeNameAndProp.size()-1))));
 		for(int i=1;i<listeNameAndProp.size();i++){
 			if(listeNameAndProp.get(i).equals("-1")){
@@ -74,10 +75,16 @@ public class CreerBDD {
 			m.addPropriete(listeNameAndProp.get(i));
 		}
 		for(MaterielStock ms : stock){
-			if(m.equals(ms)){
+			if(m.estLeMemeMaterielQue(ms)){
 				// TODO incrementer la quantite
+				alreadyExisting = true;
+				break;
 			}
 		}
+		if(!alreadyExisting){
+			stock.add(m);
+		}
+		
 		ConfigXML.store(stock, "materiel");
 		
 		
@@ -99,6 +106,7 @@ public class CreerBDD {
 				}
 				else{
 					// TODO decrementer la quantite (gerer avec les reparations ...)
+					System.out.println("decrementation du stock");
 					break;
 				}
 			}

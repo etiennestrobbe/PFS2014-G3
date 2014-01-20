@@ -1,5 +1,7 @@
 package model.temps;
-/**
+/**Classe designant une periode, celle ci est compose de 2 dates de type DateAbsolue et d'une quantite
+ * representant la quantite emprunte durant cette periode
+ * @see DateAbsolue
  * author Petillon Sebastien
  */
 import java.util.Calendar;

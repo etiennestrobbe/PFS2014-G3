@@ -1,6 +1,6 @@
 package model.temps;
 
-/**
+/**Classe representant une date, celle si peut etre sous la forme (jour,mois,annee) ou alors etre (+ou-) l'infini
  * @author Sebastien Petillon
  */
 
