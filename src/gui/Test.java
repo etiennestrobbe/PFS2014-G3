@@ -22,7 +22,6 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
-
 import listener.ActionMajStock;
 import model.bdd.GestionnaireStock;
 import model.stock.MaterielStock;
@@ -37,7 +36,6 @@ public class Test extends JFrame {
 	
 
 	public Test(GestionnaireStock gs, GUIManager gui) {
-
 		this.setLayout(new GridLayout(8,1));
 		this.gestionStock = gs; 
 		this.currentStock = (LinkedList<MaterielStock>) gestionStock.getStock().clone(); 
@@ -59,7 +57,6 @@ public class Test extends JFrame {
 		mainFrame.add(comboProprieties1);
 		mainFrame.add(comboProprieties2);
 		mainFrame.add(comboProprieties3);
-
 		listStock = inStockList();
 		mainFrame.add(listStock);
 		pack(); 
@@ -152,7 +149,6 @@ public class Test extends JFrame {
 	public void setListStock(JList<String> listStock) {
 		this.listStock = listStock;
 	}
-
 	public JList<String> inStockList(){
 		
 		DefaultListModel<String> model = new DefaultListModel<String>();
