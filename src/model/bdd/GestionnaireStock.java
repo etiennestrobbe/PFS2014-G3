@@ -140,6 +140,10 @@ public class GestionnaireStock {
 	public LinkedList<MaterielStock> getStock(){
 		return stocks;
 	}
+	
+	public void setStock(LinkedList<MaterielStock> ms){
+		this.stocks = ms;
+	}
 
 	public int nombreCompte() {
 		return comptes.size();
@@ -233,12 +237,52 @@ public class GestionnaireStock {
 	private void decQuantiteStock(MaterielStock ms, Emprunt emp) {
 		ms.retirer(emp.getDebut(), emp.getFin());
 	}
+	/**
+	 * Méthode qui retourne la liste des Matériel qui sont de même nom
+	 * que le paramètre
+	 * @param name
+	 * @return LinkedList<MaterielStock>
+	 */
+	public LinkedList<MaterielStock> elementsWhichNameIs(String name){
+		LinkedList<MaterielStock> liste = new LinkedList<MaterielStock>();
+		for (MaterielStock ms : stocks){
+			if(ms.getName().equals(name)){
+				liste.add(ms);				
+			}
+		}
+		return liste;
+	}
+	
+	public GestionnaireStock clone(){
+		GestionnaireStock stock = new GestionnaireStock("./BDD/");
+		stock.stocks = (LinkedList<MaterielStock>) stocks.clone();
+		stock.comptes = (LinkedList<Personne>) comptes.clone();
+		stock.emprunts = (HashMap<Personne, LinkedList<Emprunt>>) emprunts.clone();
+		return stock;
+	}
+	
+	/**
+	 * Méthode qui retourne la liste des Matériel qui ont la propriété passé en paramètre
+	 * @param p
+	 * @return LinkedList<MaterielStock>
+	 */
+	public LinkedList<MaterielStock> elementsWhichHaveProperty(String p){
+		LinkedList<MaterielStock> liste = new LinkedList<MaterielStock>();
+		for (MaterielStock ms : stocks){
+			for (String prop : ms.getProprietes()){
+				if (prop.equals(p)){
+					liste.add(ms);
+				}
+			}
+		}
+		return liste;
+	}
 	
 	private void majStatistique(){}
 
 	// TMP pour tests
 	public static void main(String args[]) {
-
+		
 		Calendar c1 = Calendar.getInstance();
 		c1.set(2013, 11, 14);
 		Calendar c2 = Calendar.getInstance();
@@ -285,6 +329,12 @@ public class GestionnaireStock {
 		for (MaterielStock a : gbdd.stocks) {
 			System.out.println(a);
 		}
+		System.out.println("####################################");
+		gbdd.setStock(gbdd.elementsWhichNameIs("Ordinateur"));
+		for (MaterielStock a : gbdd.stocks) {
+			System.out.println(a);
+		}
+		
 		
 
 	}

@@ -51,7 +51,7 @@ public class Login extends JFrame {
 
 		mainFrame.add(loginUser(), BorderLayout.CENTER);
 
-		setVisible(true);
+//		setVisible(true);
 		
 		setResizable(false);
 		
@@ -164,7 +164,7 @@ public class Login extends JFrame {
 	}
 	
 	public void notifySwitchViews(){
-		gui.switchView(this); 
+//		gui.switchView(this); 
 	}
 
 	public JComboBox actorsSelection() {

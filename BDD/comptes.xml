@@ -1,8 +1,1 @@
-<linked-list>
-  <personne.Personne>
-    <prenom>strobbe</prenom>
-    <nom>etienne</nom>
-    <statut>Etudiant</statut>
-    <nbEmprunt>0</nbEmprunt>
-  </personne.Personne>
-</linked-list>
+<linked-list/>
