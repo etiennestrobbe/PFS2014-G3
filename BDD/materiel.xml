@@ -91,27 +91,4 @@
     <nbFoisEmp>0</nbFoisEmp>
     <nbFoisPanne>0</nbFoisPanne>
   </model.stock.MaterielStock>
-  <model.stock.MaterielStock>
-    <statutNecessaire>Etudiant</statutNecessaire>
-    <name>Tartine</name>
-    <quantitePeriodes>
-      <model.temps.PeriodeAbsolue>
-        <debut>
-          <infini>negatif</infini>
-        </debut>
-        <fin>
-          <infini>positif</infini>
-        </fin>
-        <quantite>0</quantite>
-      </model.temps.PeriodeAbsolue>
-    </quantitePeriodes>
-    <proprietes>
-      <string>beurre</string>
-      <string>confiture</string>
-    </proprietes>
-    <disponibilite>250</disponibilite>
-    <panne>0</panne>
-    <nbFoisEmp>0</nbFoisEmp>
-    <nbFoisPanne>0</nbFoisPanne>
-  </model.stock.MaterielStock>
 </linked-list>

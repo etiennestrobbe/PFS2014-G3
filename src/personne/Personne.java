@@ -49,4 +49,11 @@ public class Personne {
 	public void setEmprunt(int nb){
 		nbEmprunt += nb;
 	}
+	public String getNom(){
+		return this.nom;
+	}
+	
+	public String getPrenom(){
+		return this.prenom;
+	}
 }

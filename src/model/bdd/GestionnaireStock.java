@@ -65,6 +65,16 @@ public class GestionnaireStock {
 		}
 		return null;
 	}
+	
+	public Personne chercherPersonne(String nom, String prenom){
+		for(Personne p : comptes){
+			
+			if(p.getNom().equals(nom) && p.getPrenom().equals(prenom)){
+				return p;
+			}
+		}
+		return null; 
+	}
 
 	public LinkedList<Emprunt> getEmprunts(Personne p) {
 		return emprunts.get(p);
