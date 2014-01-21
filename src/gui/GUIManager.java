@@ -25,8 +25,13 @@ public class GUIManager {
 		listTexte.add("Supprimer du materiel du stock :");
 		listTexte.add("Ajouter");
 		listTexte.add("Supprimer");
+<<<<<<< HEAD
 		menuGestionStock = new GestionChoix(gdd, this,listTexte);
 		test = new Test(gdd,this);
+=======
+		menuGestionStock = new GestionChoix(gdd, this,listTexte); 
+		menuGestionStock.setVisible(true);
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 		
 
 	}

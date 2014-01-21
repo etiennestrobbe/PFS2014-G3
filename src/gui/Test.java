@@ -22,21 +22,33 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListModel;
+<<<<<<< HEAD
 import listener.ActionMajStock;
+=======
+
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 import model.bdd.GestionnaireStock;
 import model.stock.MaterielStock;
 
 public class Test extends JFrame {
 	
 	private GestionnaireStock gestionStock;
+<<<<<<< HEAD
 	private LinkedList<MaterielStock> currentStock,stockAfterSelectedName,stockAfterSelectProperty1;
+=======
+	private LinkedList<MaterielStock> currentStock;
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 	private GUIManager gui;
 	private JComboBox<String> comboName,comboProprieties1,comboProprieties2,comboProprieties3;
 	private JList<String> listStock;
 	
 
 	public Test(GestionnaireStock gs, GUIManager gui) {
+<<<<<<< HEAD
 		this.setLayout(new GridLayout(8,1));
+=======
+		this.setLayout(new GridLayout(2,4));
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 		this.gestionStock = gs; 
 		this.currentStock = (LinkedList<MaterielStock>) gestionStock.getStock().clone(); 
 		this.gui = gui; 
@@ -44,6 +56,7 @@ public class Test extends JFrame {
 		this.comboProprieties1 = new JComboBox<String>();
 		this.comboProprieties2 = new JComboBox<String>();
 		this.comboProprieties3 = new JComboBox<String>();
+<<<<<<< HEAD
 		comboName.addActionListener(new ActionMajStock(this));
 		comboProprieties1.addActionListener(new ActionMajStock(this));
 		comboProprieties2.addActionListener(new ActionMajStock(this));
@@ -51,18 +64,34 @@ public class Test extends JFrame {
 
 		setLocation(500, 250);
 		setVisible(true);
+=======
+		comboName.addItemListener(new ItemState());
+		comboName.addActionListener(new ActionMajStock(this));
+
+
+		setLocation(500, 250);
+//		setVisible(true);
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 		fetchComboName(gestionStock);
 		Container mainFrame = getContentPane();
 		mainFrame.add(comboName);
 		mainFrame.add(comboProprieties1);
 		mainFrame.add(comboProprieties2);
 		mainFrame.add(comboProprieties3);
+<<<<<<< HEAD
 		listStock = inStockList();
 		mainFrame.add(listStock);
+=======
+		
+		listStock = inStockList();
+		mainFrame.add(listStock);
+		
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 		pack(); 
 		 
 	}
 	
+<<<<<<< HEAD
 	
 	public LinkedList<MaterielStock> getStockAfterSelectedName() {
 		return stockAfterSelectedName;
@@ -149,6 +178,8 @@ public class Test extends JFrame {
 	public void setListStock(JList<String> listStock) {
 		this.listStock = listStock;
 	}
+=======
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 	public JList<String> inStockList(){
 		
 		DefaultListModel<String> model = new DefaultListModel<String>();
@@ -183,9 +214,14 @@ public class Test extends JFrame {
 	 * @param gs le stock 
 	 * @param combo l'objet renvoye
 	 */
+<<<<<<< HEAD
 	public void fetchComboPropertie(LinkedList<MaterielStock> stock , JComboBox<String> combo){
 		LinkedList<String> listOfProperties = new LinkedList<String>();
 		combo.removeAllItems();
+=======
+	private JComboBox<String> fetchComboPropertie(LinkedList<MaterielStock> stock , JComboBox<String> combo){
+		LinkedList<String> listOfProperties = new LinkedList<String>();
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 		for(MaterielStock ms : stock){
 			LinkedList<String> listTemp = ms.getProprietes();
 			for(String s : listTemp){
@@ -195,9 +231,62 @@ public class Test extends JFrame {
 				}
 			}
 		}
+<<<<<<< HEAD
+=======
+		return combo;
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 	}
 	
 	
 	
+<<<<<<< HEAD
+=======
+	class ItemState implements ItemListener{
+		private LinkedList<MaterielStock> stock;
+		private Test frame;
+		private JPanel panel;
+		private GestionnaireStock gestionStock;
+		
+		public ItemState(){}
+		@Override
+		public void itemStateChanged(ItemEvent e) {	
+			System.out.println("événement déclenché sur : " + e.getItem());
+		}
+	}
+	class ActionMajStock implements ActionListener{
+		private Test frame;
+		
+		public ActionMajStock(Test f){
+			this.frame = f;
+
+		}
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			System.out.println("#################################");
+			System.out.println("Stock courant debut");
+			System.out.println("#################################");
+			System.out.println(frame.currentStock);
+			System.out.println("#################################");
+			System.out.println("Stock depart debut");
+			System.out.println("#################################");
+			System.out.println(frame.gestionStock.getStock());
+			frame.currentStock = frame.gestionStock.elementsWhichNameIs((String)comboName.getSelectedItem());
+			System.out.println("#################################");
+			System.out.println("Stock courant fin");
+			System.out.println("#################################");
+			System.out.println(frame.currentStock);
+			System.out.println("#################################");
+			System.out.println("Stock depart fin");
+			System.out.println("#################################");
+			System.out.println(frame.gestionStock.getStock());
+			//listStock.setListData(listData);
+			listStock.revalidate();
+			frame.comboProprieties1=fetchComboPropertie(currentStock,frame.comboProprieties1);
+			
+		}
+	}
+	
+	// TODO methode qui met a jour les jcombo en fonction des choix fait avant
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 	
 }

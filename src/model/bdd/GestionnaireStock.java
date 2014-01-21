@@ -243,9 +243,15 @@ public class GestionnaireStock {
 	 * @param name
 	 * @return LinkedList<MaterielStock>
 	 */
+<<<<<<< HEAD
 	public LinkedList<MaterielStock> elementsWhichNameIs(String name,LinkedList<MaterielStock> currentStock){
 		LinkedList<MaterielStock> liste = new LinkedList<MaterielStock>();
 		for (MaterielStock ms : currentStock){
+=======
+	public LinkedList<MaterielStock> elementsWhichNameIs(String name){
+		LinkedList<MaterielStock> liste = new LinkedList<MaterielStock>();
+		for (MaterielStock ms : stocks){
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 			if(ms.getName().equals(name)){
 				liste.add(ms);				
 			}
@@ -266,9 +272,15 @@ public class GestionnaireStock {
 	 * @param p
 	 * @return LinkedList<MaterielStock>
 	 */
+<<<<<<< HEAD
 	public LinkedList<MaterielStock> elementsWhichHaveProperty(String p,LinkedList<MaterielStock> currentStock){
 		LinkedList<MaterielStock> liste = new LinkedList<MaterielStock>();
 		for (MaterielStock ms : currentStock){
+=======
+	public LinkedList<MaterielStock> elementsWhichHaveProperty(String p){
+		LinkedList<MaterielStock> liste = new LinkedList<MaterielStock>();
+		for (MaterielStock ms : stocks){
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 			for (String prop : ms.getProprietes()){
 				if (prop.equals(p)){
 					liste.add(ms);
@@ -330,7 +342,11 @@ public class GestionnaireStock {
 			System.out.println(a);
 		}
 		System.out.println("####################################");
+<<<<<<< HEAD
 		gbdd.setStock(gbdd.elementsWhichNameIs("Ordinateur",gbdd.stocks));
+=======
+		gbdd.setStock(gbdd.elementsWhichNameIs("Ordinateur"));
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 		for (MaterielStock a : gbdd.stocks) {
 			System.out.println(a);
 		}

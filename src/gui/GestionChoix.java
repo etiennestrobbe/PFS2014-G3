@@ -56,7 +56,11 @@ public class GestionChoix extends JFrame {
 
 		mainFrame.add(gestionChoix(), BorderLayout.CENTER);
 
+<<<<<<< HEAD
 //		setVisible(true);
+=======
+		setVisible(true);
+>>>>>>> ce19026f2ab3e75dc6aa69b5a48be09662d2cbdb
 		
 		setResizable(false);
 		
