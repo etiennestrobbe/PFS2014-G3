@@ -28,7 +28,6 @@ public class GUIManager {
 		menuGestionStock = new GestionChoix(gdd, this,listTexte);
 		test = new Test(gdd,this);
 		
-		
 
 	}
 	

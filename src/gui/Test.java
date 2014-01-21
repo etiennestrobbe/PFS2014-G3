@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.util.Calendar;
 import java.util.LinkedList;
 
 import javax.swing.DefaultListModel;
@@ -38,6 +37,7 @@ public class Test extends JFrame {
 	
 
 	public Test(GestionnaireStock gs, GUIManager gui) {
+
 		this.setLayout(new GridLayout(8,1));
 		this.gestionStock = gs; 
 		this.currentStock = (LinkedList<MaterielStock>) gestionStock.getStock().clone(); 
@@ -62,8 +62,6 @@ public class Test extends JFrame {
 
 		listStock = inStockList();
 		mainFrame.add(listStock);
-		
-		
 		pack(); 
 		 
 	}
@@ -170,17 +168,6 @@ public class Test extends JFrame {
 		return items; 
 	}
 	
-	public DefaultListModel<String> inStockList2(){
-		
-		DefaultListModel<String> model = new DefaultListModel<String>();
-		
-		for(MaterielStock ms : this.currentStock){
-			model.addElement(ms.getName() + " " + ms.getProprietes()+Calendar.MILLISECOND); 
-		}
-		
-		return model;
-	}
-	
 	/**
 	 * Methode qui initialise l'attribut comboName d'apres le stock
 	 */
@@ -213,5 +200,8 @@ public class Test extends JFrame {
 			}
 		}
 	}
+	
+	
+	
 	
 }
