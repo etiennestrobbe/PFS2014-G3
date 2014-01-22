@@ -100,7 +100,7 @@ public class GestionBDD {
 		for(MaterielStock ms : stock){
 			if(ms.equals(materiel)){
 				// si la quantite a enlever est plus grande ou egale que la quantite disponible, alors on supprime completement le materiel
-				if(ms.getDisponible()<= quantite){
+				if(ms.getDisponibilite()<= quantite){
 					stock.remove(ms);
 					break;
 				}

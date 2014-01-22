@@ -82,6 +82,10 @@ public class PeriodeAbsolue {
 		this.quantite--;
 	}
 
+	public void setQuantite(int quantite) {
+		this.quantite = quantite;
+	}
+	
 	@Override
 	public String toString() {
 		return "{" + debut + ",\t" + fin + ",\t" + quantite + "}";

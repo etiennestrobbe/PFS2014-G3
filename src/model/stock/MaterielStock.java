@@ -1,6 +1,8 @@
 package model.stock;
 /**Classe designant un element du stock ayant un nom et des proprietes definies
  * author Petillon Sebastien & Etienne STROBBE
+ * Améliorer le 22 Janvier 2014 Guillaume BORG : ajout des validation et instanciations pour plusieurs emprunts
+ * Ainsi que la satsifaction au maximum de personne
  */
 import java.util.LinkedList;
 
@@ -18,6 +20,8 @@ public class MaterielStock {
 	private int panne;
 	private int nbFoisEmp;
 	private int nbFoisPanne;
+
+
 
 	/**
 	 * Constructeur de MaterielStock
@@ -114,27 +118,45 @@ public class MaterielStock {
 	 *            Date de debut de la recherche
 	 * @param fin
 	 *            Date de fin de la recherche
-	 * @return true si il reste au moins une disponibilite pour chaque periode
-	 *         concernee false sinon
+	 * @param quantiteDemandee
+	 * 			  La quantité demander par l'emprunt
+	 * @return int Le nombre de disponibilite possible
+	 *         0 si auncune disponiblité
 	 */
-	public boolean disponible(DateAbsolue debut, DateAbsolue fin) {
-
+	public int disponible(DateAbsolue debut, DateAbsolue fin, int quantiteDemandee) {
 		// Parcours des periodes
 		for (PeriodeAbsolue pa : quantitePeriodes) {
-
-			// Test de la presence et de la superiorit� de la quantite aux
+		
+			// Test de la presence et de la superiorité de la quantite aux
 			// emprunts
 			if (pa.presenteEntre(debut, fin)
-					&& pa.getQuantite() >= disponibilite) {
-				return false;
+			&& ((pa.getQuantite() + quantiteDemandee) > disponibilite) ) {
+			
+				int quantiteArrondie = quantiteDemandee/2;
+				System.out.println("quantiteDemandee : " + quantiteDemandee +
+				" quantiteDemandee/2 : " + (quantiteDemandee/2) +
+				" quantiteArrondie : " + quantiteArrondie +
+				" pa.getQuantite() : " + pa.getQuantite());
+				if (pa.presenteEntre(debut, fin)
+				&& ((pa.getQuantite() + quantiteArrondie) <= disponibilite) ) {
+					System.out.println("JUSTE demandé : " + (pa.getQuantite() + quantiteArrondie) + " disponibilite : " + disponibilite);
+					return quantiteArrondie;
+				}
+				else {
+					System.out.println("demandé : " + (pa.getQuantite() + quantiteArrondie) + " disponibilite : " + disponibilite);
+						return 0;
+				}
+			
 			}
 		}
-		return true;
+		System.out.println("fonction disponible OK");
+		return quantiteDemandee;
 	}
-
-	public int getDisponible(){
-		return this.disponibilite;
+	
+	public int getDisponibilite() {
+		return disponibilite;
 	}
+	
 	/**
 	 * Methode permettant de recuperer la liste des periodes inclues entre les
 	 * dates donnees ou contenant une de ces dates
@@ -173,14 +195,15 @@ public class MaterielStock {
 	 * @param fin
 	 *            Date de fin de la recherche
 	 */
-	public void retirer(DateAbsolue debut, DateAbsolue fin) {
+	public void retirer(DateAbsolue debut, DateAbsolue fin, int quantiteDemandee) {
 
 		// Creation de la liste des periodes a modifier
 		LinkedList<PeriodeAbsolue> aTraiter = periodesConcernees(debut, fin);
 
 		// Traiter chaque periode
 		for (PeriodeAbsolue p : aTraiter) {
-			p.decQuantite();
+			p.setQuantite(p.getQuantite() - quantiteDemandee); // TODO - quantite fait
+			System.out.println("p.getQuantite : " + p.getQuantite() + " quantiteDemandee : " + quantiteDemandee);
 		}
 
 		// Fusionner les periodes de meme quantites
@@ -208,6 +231,8 @@ public class MaterielStock {
 
 				// Fusion et supression
 				precedente.setFin(courante.getFin());
+;
+				precedente.setQuantite(precedente.getQuantite() + courante.getQuantite());
 				quantitePeriodes.remove(courante);
 				// Retour a la premiere des deux
 				i--;
@@ -224,7 +249,7 @@ public class MaterielStock {
 	 * @param fin
 	 *            Date de fin de la reservation
 	 */
-	public void inserer(DateAbsolue debut, DateAbsolue fin) {
+	public void inserer(DateAbsolue debut, DateAbsolue fin, int quantite) {
 
 		// Creation de la liste des periodes a modifier
 		LinkedList<PeriodeAbsolue> aTraiter = periodesConcernees(debut, fin);
@@ -232,7 +257,7 @@ public class MaterielStock {
 		// Cas special d'une seule periode exactement semblable
 		if (aTraiter.size() == 1 && aTraiter.get(0).getDebut().equals(debut)
 				&& aTraiter.get(0).getFin().equals(fin)) {
-			aTraiter.get(0).incQuantite();
+			aTraiter.get(0).setQuantite(aTraiter.get(0).getQuantite() + quantite);
 			return;
 		}
 		
@@ -247,9 +272,10 @@ public class MaterielStock {
 		PeriodeAbsolue insertionDebut = aTraiter.getFirst().ajouterFin(debut);
 		PeriodeAbsolue insertionFin = aTraiter.getLast().ajouterDebut(fin);
 
+		
 		// Affectation de la nouvelle liste de periodes
 		quantitePeriodes = insertTraitement(aTraiter, indexPremier,
-				indexDernier, insertionDebut, insertionFin);
+				indexDernier, insertionDebut, insertionFin, quantite);
 	}
 
 	/**
@@ -270,13 +296,13 @@ public class MaterielStock {
 	private LinkedList<PeriodeAbsolue> insertTraitement(
 			LinkedList<PeriodeAbsolue> aTraiter, int indexPremier,
 			int indexDernier, PeriodeAbsolue insertionDebut,
-			PeriodeAbsolue insertionFin) {
+			PeriodeAbsolue insertionFin, int quantite) {
 
 		LinkedList<PeriodeAbsolue> finale = new LinkedList<PeriodeAbsolue>();
 
 		// Traitement des periodes concernees
 		for (PeriodeAbsolue p : aTraiter) {
-			p.incQuantite();
+			p.setQuantite(p.getQuantite() + quantite);
 		}
 
 		// Ajout des periodes non concernees precedantes

@@ -1,6 +1,7 @@
 package model.bdd;
 /**
  * author Petillon Sebastien & Strobbe Etienne
+ * AmÃ©liorer le 22 Janvier 2014 Guillaume BORG : ajout plusieurs emprunts
  */
 import java.util.Calendar;
 import java.util.Collections;
@@ -220,8 +221,11 @@ public class GestionnaireStock {
 	 * @return true si l'incrÃ©mentation est possible et false sinon
 	 */
 	private boolean incQuantiteStock(MaterielStock ms, Emprunt emp) {
-		if (ms.disponible(emp.getDebut(), emp.getFin())) {
-			ms.inserer(emp.getDebut(), emp.getFin());
+		//TODO
+		int quantiteEffective = ms.disponible(emp.getDebut(), emp.getFin(), emp.getQuantite());
+		if ((quantiteEffective != 0 )) {//TODO != 0 fait
+			emp.setQuantite(quantiteEffective);
+			ms.inserer(emp.getDebut(), emp.getFin(), quantiteEffective);
 			return true;
 		}
 		return false;
@@ -235,11 +239,11 @@ public class GestionnaireStock {
 	 * @param emp
 	 */
 	private void decQuantiteStock(MaterielStock ms, Emprunt emp) {
-		ms.retirer(emp.getDebut(), emp.getFin());
+		ms.retirer(emp.getDebut(), emp.getFin(), emp.getQuantite());
 	}
 	/**
-	 * Méthode qui retourne la liste des Matériel qui sont de même nom
-	 * que le paramètre
+	 * Mï¿½thode qui retourne la liste des Matï¿½riel qui sont de mï¿½me nom
+	 * que le paramï¿½tre
 	 * @param name
 	 * @return LinkedList<MaterielStock>
 	 */
@@ -262,7 +266,7 @@ public class GestionnaireStock {
 	}
 	
 	/**
-	 * Méthode qui retourne la liste des Matériel qui ont la propriété passé en paramètre
+	 * Mï¿½thode qui retourne la liste des Matï¿½riel qui ont la propriï¿½tï¿½ passï¿½ en paramï¿½tre
 	 * @param p
 	 * @return LinkedList<MaterielStock>
 	 */
@@ -280,7 +284,72 @@ public class GestionnaireStock {
 	
 	private void majStatistique(){}
 
-	// TMP pour tests
+	
+	public static void main(String args[]) {
+
+		Calendar c1 = Calendar.getInstance();
+		c1.set(2014, 0, 22);
+		Calendar c2 = Calendar.getInstance();
+		c2.set(2014, 0, 25);
+		Calendar c3 = Calendar.getInstance();
+		c3.set(2014, 0, 24);
+		Calendar c4 = Calendar.getInstance();
+		c4.set(2014, 0, 28);
+		String chemin = "./BDD/";
+		GestionBDD.setBDD(chemin);
+		GestionnaireStock gbdd = new GestionnaireStock(chemin);
+		MaterielStock ms = gbdd.stocks.get(0);
+		MaterielStock ms2 = gbdd.stocks.get(1);
+		System.out.println(gbdd.stocks.get(1).affichage() + "disponibilite : " + gbdd.stocks.get(1).getDisponibilite());
+		
+		Personne p1 = new Personne("Nom1", "Prenom", Statut.Professeur);
+		Personne p2 = new Personne("Nom2", "Prenom", Statut.Professeur);
+		Personne p3 = new Personne("Nom3", "Prenom", Statut.Professeur);
+
+		gbdd.creerCompte(p1);
+		gbdd.creerCompte(p2);
+		gbdd.creerCompte(p3);
+
+		Emprunt emp1 = new Emprunt(gbdd.comptes.get(0), new DateAbsolue(c1),
+				new DateAbsolue(c2), ms2, 2);
+		Emprunt emp1_bis = new Emprunt(gbdd.comptes.get(0),
+				new DateAbsolue(c3), new DateAbsolue(c4), ms2, 2);
+		Emprunt emp2 = new Emprunt(gbdd.comptes.get(0),
+				new DateAbsolue(c3), new DateAbsolue(c4), ms2, 2);
+		Emprunt emp3 = new Emprunt(gbdd.comptes.get(0),
+				new DateAbsolue(c3), new DateAbsolue(c4), ms2, 1);
+		//Emprunt emp2 = new Emprunt(gbdd.comptes.get(0), new DateAbsolue(c3),
+			//	new DateAbsolue(c4), ms2, 6);
+
+		gbdd.ajouterEmprunt(emp1);
+		gbdd.ajouterEmprunt(emp1_bis);
+		//if(gbdd.annulerEmprunt(emp1))
+			//System.out.println("OK!!!");
+		gbdd.ajouterEmprunt(emp2);		
+		gbdd.ajouterEmprunt(emp3);		
+		System.out.println(gbdd.stocks.get(1).affichage() + "disponibilite : " + gbdd.stocks.get(1).getDisponibilite());
+		//		gbdd.supprimerCompte(p1);
+		 //gbdd.annulerEmprunt(emp2);
+		 
+
+		LinkedList<String> lkl = new LinkedList<String>();
+		lkl.add("Tartine");
+		lkl.add("beurre");
+		lkl.add("confiture");
+		lkl.add("-1");
+		GestionBDD.addMateriel(125, lkl, stocks);
+		GestionBDD.addMateriel(125, lkl, stocks);
+
+		for (MaterielStock a : gbdd.stocks) {
+			System.out.println(a);
+		}
+		
+
+	}
+	
+	
+/*
+	// ANCIEN TMP pour tests
 	public static void main(String args[]) {
 		
 		Calendar c1 = Calendar.getInstance();
@@ -334,8 +403,5 @@ public class GestionnaireStock {
 		for (MaterielStock a : gbdd.stocks) {
 			System.out.println(a);
 		}
-		
-		
-
-	}
+	}*/
 }

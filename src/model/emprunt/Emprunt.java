@@ -1,6 +1,7 @@
 package model.emprunt;
 /**
  * author Petillon Sebastien
+ * Améliorer le 22 Janvier 2014 Guillaume BORG : ajout donnée membre quantite et tout ce qui en découle
  */
 import java.util.Calendar;
 
@@ -18,16 +19,19 @@ public class Emprunt {
 	private DateAbsolue debut;
 	private DateAbsolue fin;
 	private MaterielStock materielEmprunte;
+	private int quantite;
 
 	public Emprunt(Personne personne, DateAbsolue debut, DateAbsolue fin,
-			MaterielStock materielEmprunte) {
+			MaterielStock materielEmprunte, int quantite) {
 		id = nextId;
 		nextId++;
 		this.setPersonne(personne);
 		this.debut = debut;
 		this.fin = fin;
 		this.materielEmprunte = materielEmprunte;
+		this.quantite = quantite; 
 	}
+	
 
 	/**
 	 * Methode permettant de savoir si un emprunt est autorise (valide) ou pas.
@@ -84,5 +88,9 @@ public class Emprunt {
 	public Personne getPersonne() {
 		return personne;
 	}
+	
+	public int getQuantite() { return this.quantite; }
+	public void setQuantite(int quantite) { this.quantite = quantite; }
+	
 
 }
